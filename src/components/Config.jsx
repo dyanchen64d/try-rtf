@@ -6,10 +6,10 @@ const Config = () => {
   return (
     <div className="config">
       <button>
-        <div onClick={() => changeTexture('cliff')}>TEXTURE 1</div>
+        <div onClick={() => changeTexture('cliff')}>CLIFF</div>
       </button>
       <button>
-        <div onClick={() => changeTexture('wood')}>TEXTURE 2</div>
+        <div onClick={() => changeTexture('wood')}>WOOD</div>
       </button>
     </div>
   );
