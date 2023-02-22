@@ -1,11 +1,18 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Canvas } from '@react-three/fiber';
+import Demo from './components/Demo';
 
-  return <div className="App"></div>;
+function App() {
+  return (
+    <div className="App">
+      <Canvas>
+        <color attach="background" args={['#213547']} />
+        <fog attach="fog" args={['#213547', 10, 20]} />
+        <Demo />
+      </Canvas>
+    </div>
+  );
 }
 
 export default App;
