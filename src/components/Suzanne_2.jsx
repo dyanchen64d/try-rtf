@@ -8,36 +8,43 @@ import { useGLTF, useTexture } from '@react-three/drei';
 
 import * as THREE from 'three';
 
+import { useTextureContext } from '../textureContext';
+
 export function Model(props) {
   const { nodes, materials } = useGLTF('/suzanne_2.gltf');
 
-  const rockTextureProps = useTexture({
-    map: '/texture_rock/CliffJagged004_COL_VAR1_1K.jpg',
-    // displacementMap: '/texture_rock/CliffJagged004_DISP_VAR1_1K.jpg',
-    normalMap: '/texture_rock/CliffJagged004_NRM_1K.jpg',
-    roughnessMap: '/texture_rock/CliffJagged004_GLOSS_1K.jpg',
-    aoMap: '/texture_rock/CliffJagged004_AO_1K.jpg',
+  const { texture } = useTextureContext();
+
+  // console.log('texture', texture)
+
+  const { map, normalMap, roughnessMap, aoMap } = texture;
+
+  const textureProps = useTexture({
+    map,
+    normalMap,
+    roughnessMap,
+    aoMap,
   });
 
-  rockTextureProps.map.repeat.set(3, 3);
-  rockTextureProps.normalMap.repeat.set(3, 3);
-  rockTextureProps.roughnessMap.repeat.set(3, 3);
-  rockTextureProps.aoMap.repeat.set(3, 3);
+  textureProps.map.repeat.set(3, 3);
+  textureProps.normalMap.repeat.set(3, 3);
+  textureProps.roughnessMap.repeat.set(3, 3);
+  textureProps.aoMap.repeat.set(3, 3);
 
-  rockTextureProps.map.wrapS =
-    rockTextureProps.map.wrapT =
-    rockTextureProps.normalMap.wrapS =
-    rockTextureProps.normalMap.wrapT =
-    rockTextureProps.roughnessMap.wrapS =
-    rockTextureProps.roughnessMap.wrapT =
-    rockTextureProps.aoMap.wrapS =
-    rockTextureProps.aoMap.wrapT =
+  textureProps.map.wrapS =
+    textureProps.map.wrapT =
+    textureProps.normalMap.wrapS =
+    textureProps.normalMap.wrapT =
+    textureProps.roughnessMap.wrapS =
+    textureProps.roughnessMap.wrapT =
+    textureProps.aoMap.wrapS =
+    textureProps.aoMap.wrapT =
       THREE.RepeatWrapping;
 
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Suzanne.geometry}>
-        <meshStandardMaterial {...rockTextureProps} />
+        <meshStandardMaterial {...textureProps} />
       </mesh>
     </group>
   );
