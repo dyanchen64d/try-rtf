@@ -14,3 +14,8 @@
   padding: 4px;
   margin-right: 10px;
 }
+
+.config button.__active {
+  background-color: brown;
+  color: white;
+}
